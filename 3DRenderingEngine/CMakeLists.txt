@@ -14,7 +14,7 @@ project ("3DRenderingEngine")
 # Ajoutez une source à l'exécutable de ce projet.
 add_executable (3DRenderingEngine
         "source/3DRenderingEngine.cpp"
-        "source/glad.c"  )
+        "source/glad.c"   "source/Engine/Engine.cpp" "source/Engine/LogSystem/LogSystem.cpp")
 
 target_include_directories(3DRenderingEngine PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/includes"
