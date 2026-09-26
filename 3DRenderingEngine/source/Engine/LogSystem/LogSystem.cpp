@@ -2,6 +2,14 @@
 
 #include <iostream>
 
+bool LogSystem::Initialize()
+{
+	return true;
+}
+
+void LogSystem::Clean()
+{}
+
 void LogSystem::Log(std::string logMessage)
 {
 	std::cout << "LOG : " << logMessage << std::endl;

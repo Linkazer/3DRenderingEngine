@@ -4,10 +4,36 @@
 #include <string>
 #include <format>
 
+Engine::Engine()
+	: logSystem(LogSystem())
+	, sceneSystem(SceneSystem())
+	, windowSystem(WindowSystem())
+{
+}
+
 bool Engine::Initialize()
 {
-	logSystem = LogSystem();
+	//Log System
+	if (!logSystem.Initialize())
+	{
+		return false;
+	}
 
+	//Scene System
+	if (!sceneSystem.Initialize())
+	{
+		logSystem.LogError("SceneSystem didn't initialize.");
+		return false;
+	}
+
+	//Window System
+	if (!windowSystem.Initialize())
+	{
+		logSystem.LogError("WindowSystem didn't initialize.");
+		return false;
+	}
+
+	//TESTS
 	std::string runtimeChosen;
 
 	std::cout << "Durée de runtime : ";
@@ -27,7 +53,7 @@ bool Engine::Initialize()
 	return isRunning;
 }
 
-void Engine::Stop()
+void Engine::Quit()
 {
 	isRunning = false;
 }
@@ -42,7 +68,7 @@ void Engine::Update(float deltaTime)
 
 	if (runtimeLeft <= 0)
 	{
-		Stop();
+		Quit();
 	}
 
 	logSystem.Log(std::format("Temps restant : {:.2f}", runtimeLeft));
@@ -55,5 +81,7 @@ void Engine::Render()
 
 void Engine::Clean()
 {
-
+	logSystem.Clean();
+	sceneSystem.Clean();
+	windowSystem.Clean();
 }

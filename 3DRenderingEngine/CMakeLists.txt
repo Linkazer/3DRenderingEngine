@@ -14,7 +14,7 @@ project ("3DRenderingEngine")
 # Ajoutez une source à l'exécutable de ce projet.
 add_executable (3DRenderingEngine
         "source/3DRenderingEngine.cpp"
-        "source/glad.c"   "source/Engine/Engine.cpp" "source/Engine/LogSystem/LogSystem.cpp")
+        "source/glad.c"   "source/Engine/Engine.cpp" "source/Engine/LogSystem/LogSystem.cpp" "source/Engine/SceneSystem/SceneObject.cpp" "source/Engine/SceneSystem/SceneObjectComponent.cpp" "source/Engine/SceneSystem/SceneSystem.cpp" "source/Engine/Window/WindowSystem.cpp" "source/Engine/Window/WindowDisplayed.cpp" "source/Engine/Window/GLFWWindowProvider.cpp" "source/Engine/Window/GLFWWindowDisplayed.cpp")
 
 target_include_directories(3DRenderingEngine PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/includes"
@@ -28,8 +28,11 @@ target_link_directories(3DRenderingEngine PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/external/OpenGL/lib"
 )
 
+target_link_libraries(3DRenderingEngine PRIVATE
+    glfw3
+    opengl32
+)
+
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET 3DRenderingEngine PROPERTY CXX_STANDARD 20)
 endif()
-
-# TODO: Ajoutez des tests et installez des cibles si nécessaire.
