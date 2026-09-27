@@ -1,8 +1,12 @@
 #pragma once
 
-#include <Engine\LogSystem\LogSystem.h>
 #include <Engine\SceneSystem\SceneSystem.h>
 #include <Engine\Window\WindowSystem.h>
+#include <Rendering\RenderSystem.h>
+
+//Tests
+#include <memory>
+#include <Rendering\Renderer.h>
 
 class Engine
 {
@@ -22,12 +26,13 @@ public :
 private :
 	bool isRunning = false;
 
-	LogSystem logSystem;
 	SceneSystem sceneSystem;
-	WindowSystem windowSystem;
+	//WindowSystem windowSystem;
+	RenderSystem renderSystem;
 
 	void Quit();
 
 	//TESTS :
 	float runtimeLeft = 0.0f;
+	std::unique_ptr<Renderer> rnd;
 };

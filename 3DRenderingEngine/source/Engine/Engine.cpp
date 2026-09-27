@@ -1,35 +1,42 @@
 #include<Engine\Engine.h>
 
+#include <Engine\LogSystem\LogSystem.h>
+
 #include <iostream>
 #include <string>
 #include <format>
 
+//TESTS
+#include <Rendering\RendererFactory.h>
+
 Engine::Engine()
-	: logSystem(LogSystem())
-	, sceneSystem(SceneSystem())
-	, windowSystem(WindowSystem())
+	: sceneSystem(SceneSystem())
+	//, windowSystem(WindowSystem())
+	, renderSystem(RenderSystem())
+	, rnd(nullptr)
 {
 }
 
 bool Engine::Initialize()
 {
-	//Log System
-	if (!logSystem.Initialize())
-	{
-		return false;
-	}
-
 	//Scene System
 	if (!sceneSystem.Initialize())
 	{
-		logSystem.LogError("SceneSystem didn't initialize.");
+		LogSystem::LogError("SceneSystem didn't initialize.");
 		return false;
 	}
 
 	//Window System
-	if (!windowSystem.Initialize())
+	/*if (!windowSystem.Initialize())
 	{
-		logSystem.LogError("WindowSystem didn't initialize.");
+		LogSystem::LogError("WindowSystem didn't initialize.");
+		return false;
+	}*/
+
+	//Render System
+	if (!renderSystem.Initialize())
+	{
+		LogSystem::LogError("RenderSystem didn't initialize.");
 		return false;
 	}
 
@@ -47,8 +54,11 @@ bool Engine::Initialize()
 	}
 	else
 	{
-		logSystem.LogError("Durée invalide.");
+		LogSystem::LogError("Durée invalide.");
 	}
+
+	rnd = RendererFactory::CreateRenderer();
+	rnd->AddToRenderLoop();
 
 	return isRunning;
 }
@@ -68,20 +78,21 @@ void Engine::Update(float deltaTime)
 
 	if (runtimeLeft <= 0)
 	{
+		rnd->RemoveFromRenderLoop();
 		Quit();
 	}
 
-	logSystem.Log(std::format("Temps restant : {:.2f}", runtimeLeft));
+	LogSystem::Log(std::format("Temps restant : {:.2f}", runtimeLeft));
 }
 
 void Engine::Render()
 {
-
+	renderSystem.Render();
 }
 
 void Engine::Clean()
 {
-	logSystem.Clean();
 	sceneSystem.Clean();
-	windowSystem.Clean();
+	//windowSystem.Clean();
+	renderSystem.Clean();
 }

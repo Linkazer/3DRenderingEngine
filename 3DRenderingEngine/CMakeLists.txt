@@ -14,7 +14,7 @@ project ("3DRenderingEngine")
 # Ajoutez une source à l'exécutable de ce projet.
 add_executable (3DRenderingEngine
         "source/3DRenderingEngine.cpp"
-        "source/glad.c"   "source/Engine/Engine.cpp" "source/Engine/LogSystem/LogSystem.cpp" "source/Engine/SceneSystem/SceneObject.cpp" "source/Engine/SceneSystem/SceneObjectComponent.cpp" "source/Engine/SceneSystem/SceneSystem.cpp" "source/Engine/Window/WindowSystem.cpp" "source/Engine/Window/WindowDisplayed.cpp" "source/Engine/Window/GLFWWindowProvider.cpp" "source/Engine/Window/GLFWWindowDisplayed.cpp")
+        "source/glad.c"   "source/Engine/Engine.cpp" "source/Engine/LogSystem/LogSystem.cpp" "source/Engine/SceneSystem/SceneObject.cpp" "source/Engine/SceneSystem/SceneObjectComponent.cpp" "source/Engine/SceneSystem/SceneSystem.cpp" "source/Engine/Window/WindowSystem.cpp" "source/Engine/Window/WindowDisplayed.cpp" "source/Engine/Window/GLFWWindowProvider.cpp" "source/Engine/Window/GLFWWindowDisplayed.cpp" "source/Rendering/RenderSystem.cpp" "source/Rendering/RendererFactory.cpp" "source/Rendering/OpenGL/OpenglRenderProvider.cpp" "source/Rendering/OpenGL/OpenglRenderer.cpp" "source/Rendering/Renderer.cpp")
 
 target_include_directories(3DRenderingEngine PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/includes"

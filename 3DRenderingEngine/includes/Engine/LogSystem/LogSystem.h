@@ -11,7 +11,7 @@ public :
 	bool Initialize();
 	void Clean();
 
-	void Log(std::string logMessage);
-	void LogWarning(std::string logMessage);
-	void LogError(std::string logMessage);
+	static void Log(std::string logMessage);
+	static void LogWarning(std::string logMessage);
+	static void LogError(std::string logMessage);
 };
