@@ -4,9 +4,10 @@
 
 #include <Engine\Engine.h>
 
+#include <iostream>
 int main()
 {
-	Engine engine = Engine();
+	Engine engine;
 
 	if (!engine.Initialize())
 	{
@@ -28,6 +29,11 @@ int main()
 
 		engine.ProcessInputs();
 		engine.Update(deltaTime);
+		if (!engine.IsRunning())
+		{
+			break;
+		}
+
 		engine.Render();
 	}
 

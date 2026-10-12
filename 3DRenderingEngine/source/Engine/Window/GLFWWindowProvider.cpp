@@ -29,10 +29,15 @@ bool GLFWWindowProvider::Initialize()
 
 void GLFWWindowProvider::Clean()
 {
-    glfwSetWindowShouldClose(window->GetGlfwWindow(), true);
+    
 }
 
 WindowDisplayed& GLFWWindowProvider::GetWindow() const
 {
 	return *window;
+}
+
+void GLFWWindowProvider::CloseAllWindow()
+{
+    glfwSetWindowShouldClose(window->GetGlfwWindow(), true);
 }

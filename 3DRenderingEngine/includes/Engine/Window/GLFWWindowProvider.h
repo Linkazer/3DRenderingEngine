@@ -17,7 +17,9 @@ public :
 	void Clean() override;
 
 	WindowDisplayed& GetWindow() const override;
+	void CloseAllWindow() override;
 
 private :
-	std::unique_ptr<GLFWWindowDisplayed> window;
+	std::unique_ptr<GLFWWindowDisplayed> window = nullptr;
+
 };

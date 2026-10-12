@@ -50,7 +50,7 @@ void SceneObject::RemoveComponent(const SceneObjectComponent* componentToRemove)
 
 	if (it != components.end())
 	{
-		it->get()->OnDestroy();
+		it->get()->Destroy();
 		components.erase(it);
 	}
 }

@@ -6,6 +6,8 @@
 #include <Rendering\RenderAPI.h>
 #include <Rendering\Renderer.h>
 
+#include <Rendering\Camera\Camera.h>
+
 class RenderSystem
 {
 public :
@@ -15,7 +17,7 @@ public :
 	bool Initialize();
 	void Clean();
 
-	void Render();
+	void Render(const Camera& camera);
 
 	void AddRendererToRenderLoop(Renderer& rendererToAdd);
 	void RemoveRendererToRenderLoop(Renderer& rendererToRemove);

@@ -12,9 +12,8 @@ public :
 
 	inline GLFWwindow* GetGlfwWindow() { return window; }
 
-	void* GetProcAdress(const char* name) override;
 	void SwapBuffers() const override;
 
 private :
-	GLFWwindow* window;
+	GLFWwindow* window = nullptr;
 };

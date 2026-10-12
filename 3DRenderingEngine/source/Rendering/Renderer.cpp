@@ -7,6 +7,11 @@ Renderer::Renderer(RenderSystem& nRenderSystem)
 	renderSystem = &nRenderSystem;
 }
 
+void Renderer::Initialize(Transform* nTransform)
+{
+	transform = nTransform;
+}
+
 void Renderer::AddToRenderLoop()
 {
 	renderSystem->AddRendererToRenderLoop(*this);

@@ -14,7 +14,7 @@ project ("3DRenderingEngine")
 # Ajoutez une source à l'exécutable de ce projet.
 add_executable (3DRenderingEngine
         "source/3DRenderingEngine.cpp"
-        "source/glad.c"   "source/Engine/Engine.cpp" "source/Engine/LogSystem/LogSystem.cpp" "source/Engine/SceneSystem/SceneObject.cpp" "source/Engine/SceneSystem/SceneObjectComponent.cpp" "source/Engine/SceneSystem/SceneSystem.cpp" "source/Engine/Window/WindowSystem.cpp" "source/Engine/Window/WindowDisplayed.cpp" "source/Engine/Window/GLFWWindowProvider.cpp" "source/Engine/Window/GLFWWindowDisplayed.cpp" "source/Rendering/RenderSystem.cpp" "source/Rendering/RendererFactory.cpp" "source/Rendering/OpenGL/OpenglRenderProvider.cpp" "source/Rendering/OpenGL/OpenglRenderer.cpp" "source/Rendering/Renderer.cpp")
+        "source/glad.c"   "source/Engine/Engine.cpp" "source/Engine/LogSystem/LogSystem.cpp" "source/Engine/SceneSystem/SceneObject.cpp" "source/Engine/SceneSystem/SceneObjectComponent.cpp" "source/Engine/SceneSystem/SceneSystem.cpp" "source/Engine/Window/WindowSystem.cpp" "source/Engine/Window/WindowDisplayed.cpp" "source/Engine/Window/GLFWWindowProvider.cpp" "source/Engine/Window/GLFWWindowDisplayed.cpp" "source/Rendering/RenderSystem.cpp" "source/Rendering/RendererFactory.cpp" "source/Rendering/OpenGL/OpenglRenderProvider.cpp" "source/Rendering/OpenGL/OpenglRenderer.cpp" "source/Rendering/Renderer.cpp" "source/Rendering/Data/MeshData.cpp" "source/Rendering/Data/ModelData.cpp" "source/Rendering/Shader/Shader.cpp" "source/Rendering/OpenGL/OpenglShader.cpp" "source/Rendering/OpenGL/Data/OpenglMeshData.cpp" "source/Rendering/OpenGL/Data/OpenglModelData.cpp" "source/Engine/SceneSystem/Transform.cpp" "source/Engine/SceneSystem/Components/SOC_Renderer.cpp" "source/Rendering/Camera/Camera.cpp" "source/Rendering/Camera/Viewport.cpp")
 
 target_include_directories(3DRenderingEngine PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/includes"
@@ -31,6 +31,12 @@ target_link_directories(3DRenderingEngine PRIVATE
 target_link_libraries(3DRenderingEngine PRIVATE
     glfw3
     opengl32
+)
+
+add_custom_command(TARGET 3DRenderingEngine POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${CMAKE_SOURCE_DIR}/ressources"
+        "$<TARGET_FILE_DIR:3DRenderingEngine>/ressources"
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

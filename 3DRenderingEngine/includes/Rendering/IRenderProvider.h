@@ -2,6 +2,8 @@
 
 #include <Rendering\Renderer.h>
 
+#include <Rendering\Camera\Camera.h>
+
 // Base Version
 class IRenderProvider
 {
@@ -12,7 +14,7 @@ public :
 	virtual bool Initialize() = 0;
 	virtual void Clean() = 0;
 
-	virtual void Render() = 0;
+	virtual void Render(const Camera& camera) = 0;
 
 	virtual void AddRendererToRenderLoop(Renderer& rendererToAdd) = 0;
 	virtual void RemoveRendererToRenderLoop(Renderer& rendererToRemove) = 0;
@@ -25,7 +27,7 @@ class IRenderProviderTemplate : public IRenderProvider
 {
 public :
 	IRenderProviderTemplate() = default;
-	~IRenderProviderTemplate() override = default;
+	virtual ~IRenderProviderTemplate() override = default;
 
 	void AddRendererToRenderLoop(Renderer& rendererToAdd) override;
 	void RemoveRendererToRenderLoop(Renderer& rendererToRemove) override;

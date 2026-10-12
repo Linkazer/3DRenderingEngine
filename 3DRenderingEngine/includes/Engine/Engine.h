@@ -7,6 +7,8 @@
 //Tests
 #include <memory>
 #include <Rendering\Renderer.h>
+#include <Rendering\Camera\Viewport.h>
+#include <Engine\SceneSystem\Transform.h>
 
 class Engine
 {
@@ -26,13 +28,15 @@ public :
 private :
 	bool isRunning = false;
 
-	SceneSystem sceneSystem;
-	//WindowSystem windowSystem;
-	RenderSystem renderSystem;
+	std::unique_ptr<SceneSystem> sceneSystem;
+	std::unique_ptr<WindowSystem> windowSystem;
+	std::unique_ptr<RenderSystem> renderSystem;
+	std::unique_ptr<Viewport> viewport;
 
 	void Quit();
 
 	//TESTS :
 	float runtimeLeft = 0.0f;
 	std::unique_ptr<Renderer> rnd;
+	Transform transformTest;
 };

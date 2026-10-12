@@ -15,7 +15,10 @@ public :
 	void Clean();
 
 	WindowDisplayed& GetWindow() const;
+	void CloseAllWindow();
+
+	static void* GetProcAdress(const char* name);
 
 private :
-	std::unique_ptr<IWindowProvider> provider;
+	std::unique_ptr<IWindowProvider> provider = nullptr;
 };

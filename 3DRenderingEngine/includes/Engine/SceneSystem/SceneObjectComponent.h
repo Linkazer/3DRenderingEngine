@@ -6,17 +6,19 @@ class SceneObjectComponent
 {
 public :
 	SceneObjectComponent(SceneObject& nParentObject);
-	~SceneObjectComponent() = default;
+	virtual ~SceneObjectComponent() = default;
 
 	const SceneObject& GetParentObject() const;
 
 	void Initialize();
-	virtual void OnInitialize();
 
 	void Update();
-	virtual void OnUpdate();
 
 	void Destroy();
+
+protected :
+	virtual void OnInitialize();
+	virtual void OnUpdate();
 	virtual void OnDestroy();
 
 private :

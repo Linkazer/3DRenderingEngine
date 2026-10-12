@@ -36,9 +36,9 @@ void RenderSystem::Clean()
 	}
 }
 
-void RenderSystem::Render()
+void RenderSystem::Render(const Camera& camera)
 {
-	renderProvider->Render();
+	renderProvider->Render(camera);
 }
 
 void RenderSystem::AddRendererToRenderLoop(Renderer& rendererToAdd)

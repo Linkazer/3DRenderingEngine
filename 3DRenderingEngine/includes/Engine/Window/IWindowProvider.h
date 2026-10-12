@@ -12,4 +12,5 @@ public :
 	virtual void Clean() = 0;
 
 	virtual WindowDisplayed& GetWindow() const = 0;
+	virtual void CloseAllWindow() = 0;
 };
